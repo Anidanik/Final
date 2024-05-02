@@ -8,8 +8,8 @@ from rest_framework.response import Response
 
 class CollectionApiView(APIView):
 
-    def get(self,request):
-        queryset = GameInCollection.objects.filter(collection__user=request.user).select_related('game','collection')
+    def get(self, request):
+        queryset = GameInCollection.objects.filter(collection__user=request.user).select_related('game', 'collection')
         serializer = GameInCollectionSerializer(queryset, many=True)
         return Response(serializer.data)
 
@@ -19,16 +19,16 @@ class CollectionApiView(APIView):
         game = Games.objects.get(id=id)
         game_in_collection, created = GameInCollection.objects.get_or_create(collection=collection, game=game)
         game_in_collection.save()
-        games_in_collection = GameInCollection.objects.filter(collection=collection).select_related('game','collection')
+        games_in_collection = GameInCollection.objects.filter(collection=collection).select_related('game', 'collection')
         serializer = GameInCollectionSerializer(games_in_collection, many=True)
         return Response(serializer.data, status=201)
 
-    def delete(self,request):
+    def delete(self, request):
         id = request.data['id']
         collection = request.user.collection
-        game = Games.objects.get(id=id).select_related('game','collection')
-        game_in_collection = GameInCollection.objects.get(collection=collection, game=game).select_related('game','collection')
+        game = Games.objects.get(id=id).select_related('game', 'collection')
+        game_in_collection = GameInCollection.objects.get(collection=collection, game=game).select_related('game', 'collection')
         game_in_collection.delete()
-        games_in_collection = GameInCollection.objects.filter(collection=collection).select_related('game','collection')
+        games_in_collection = GameInCollection.objects.filter(collection=collection).select_related('game', 'collection')
         serializer = GameInCollectionSerializer(games_in_collection,many=True)
         return Response(serializer.data)

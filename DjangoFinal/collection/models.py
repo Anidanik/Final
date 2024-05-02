@@ -15,8 +15,8 @@ class CollectionUser(models.Model):
 
 
 class GameInCollection(models.Model):
-    collection= models.ForeignKey(CollectionUser, on_delete=models.CASCADE)
-    game = models.ForeignKey(Games,on_delete= models.CASCADE,related_name='games')
+    collection = models.ForeignKey(CollectionUser, on_delete=models.CASCADE)
+    game = models.ForeignKey(Games,on_delete=models.CASCADE, related_name='games')
 
     def __str__(self):
         return f'{self.game}'

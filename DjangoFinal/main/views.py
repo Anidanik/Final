@@ -17,7 +17,7 @@ class RandomGameView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Games.objects.order_by('?')[:1].select_related('publisher','serial_number')
+        context['games'] = Games.objects.order_by('?')[:1].select_related('publisher', 'serial_number')
         return context
 
 
@@ -26,7 +26,7 @@ class GamesView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Games.objects.all().order_by("id").select_related('publisher','serial_number')
+        context['games'] = Games.objects.all().order_by("id").select_related('publisher', 'serial_number')
         return context
 
 
@@ -90,10 +90,10 @@ class GagaView(PublisherView):
 class MechanicsApiViewSet(viewsets.ModelViewSet):
     queryset = Mechanics.objects.all()
     serializer_class = MechanicsSerializer
-    permission_classes =[permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
 
 
 class PublisherApiViewSet(viewsets.ModelViewSet):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
-    permission_classes =[permissions.IsAdminUser]
+    permission_classes = [permissions.IsAdminUser]
