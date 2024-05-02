@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+     <style>
+            .text {
+            text-align:  center;
+            }
+  </style>
+</head>
+<body>
+        <div class="text">
+            <h1> Главная страница </h1>
+           <a href="{% url 'games' %}"><h1>Игры</h1></a>
+            <a href="{% url 'publishers' %}"><h1>Издатели</h1></a>
+            <a href="{% url 'random_game' %}"><h1>Во что поиграть ?</h1></a>
+            <a href="{% url 'collection' %}"><h1>Коллекция</h1></a>
+        </div>
+<a href="{% url 'logout' %}">Выход</a>
+</body>
+</html>

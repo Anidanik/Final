@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+    <title>Список издателей</title>
+         <style>
+            .text {
+            text-align:  center;
+            }
+         </style>
+    </head>
+    <body>
+     <a href="{% url 'main' %}"><p>Главная страница</p></a>
+        <h1 class="text"> Издатели </h1>
+        {% for publisher in publishers %}
+        <div class="text">
+            {% if publisher.publisher == 'Gaga Games' %}
+    <a href="{% url 'gaga' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+{% elif publisher.publisher == 'Crowd games' %}
+    <a href="{% url 'crowd' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+{% elif publisher.publisher == 'Lavka Games' %}
+    <a href="{% url 'lavka' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+            {% elif publisher.publisher == 'Стиль жизни' %}
+    <a href="{% url 'stil' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+            {% elif publisher.publisher == 'Hobby Games' %}
+    <a href="{% url 'hobby' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+{% else %}
+    <a href="{% url 'niza' %}"><h1>Издатель - {{publisher.publisher}}</h1></a>
+{% endif %}
+                <h3>Кол-во игр - {{publisher.count}}</h3>
+                {% for game in games%}
+                <h3>{{game.name}}</h3>
+                {% endfor %}
+        </div>
+        {% endfor %}
+    <a href="{% url 'logout' %}">Выход</a>
+    </body>
+</html>

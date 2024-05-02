@@ -87,7 +87,7 @@ class GagaView(PublisherView):
         return context
 
 
-class MechanicsApiView(viewsets.ModelViewSet):
+class MechanicsApiViewSet(viewsets.ModelViewSet):
     queryset = Mechanics.objects.all()
     serializer_class = MechanicsSerializer
     permission_classes =[permissions.IsAdminUser]

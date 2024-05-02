@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Случайная игра</title>
+    <style>
+            .text {
+            text-align:  center;
+            }
+  </style>
+</head>
+<body>
+<a href="{% url 'main' %}"><p>Главная страница</p></a>
+{% for game in games%}
+<div class="text">
+            <h1>{{game.name}}</h1>
+            <h3>Кол-во игроков - {{game.number_of_players}}</h3>
+            <h3>Издатели - {{game.publisher}}</h3>
+            <h3>Оценка - {{game.grade}}</h3>
+            <h3>Механики:</h3>
+            {% for m in game.mechanics.all %}
+                <h3>{{m.mechanics }}</h3>
+            {% endfor %}
+    <form>
+   <button onclick="">Подобрать игру</button>
+        </form>
+</div>
+ {% endfor %}
+<a href="{% url 'logout' %}">Выход</a>
+</body>
+</html>
