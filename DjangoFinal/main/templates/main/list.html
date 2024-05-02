@@ -14,7 +14,7 @@
         <h1 class="text"> Игры </h1>
         {% for game in games%}
         <div class="text">
-            <h1>{{game.name}}</h1>
+            <h1>{{game.name}} ({{game.id}})</h1>
             <h3>Кол-во игроков - {{game.number_of_players}}</h3>
             <h3>Издатели - {{game.publisher}}</h3>
             <h3>Оценка - {{game.grade}}</h3>
