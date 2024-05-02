@@ -3,9 +3,7 @@ from django.db.models import Q
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from rest_framework import permissions
-from .serializers import MechanicsSerializer, PublisherSerializer
 from .models import Games, Publisher, Mechanics
-from rest_framework import viewsets
 
 
 class MainView(LoginRequiredMixin, TemplateView):
@@ -85,15 +83,3 @@ class GagaView(PublisherView):
         context['publishers'] = Publisher.objects.filter(Q(publisher='Gaga Games'))
         context['games'] = Games.objects.filter(Q(publisher__publisher='Gaga Games'))
         return context
-
-
-class MechanicsApiViewSet(viewsets.ModelViewSet):
-    queryset = Mechanics.objects.all()
-    serializer_class = MechanicsSerializer
-    permission_classes = [permissions.IsAdminUser]
-
-
-class PublisherApiViewSet(viewsets.ModelViewSet):
-    queryset = Publisher.objects.all()
-    serializer_class = PublisherSerializer
-    permission_classes = [permissions.IsAdminUser]
