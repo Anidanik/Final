@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import (GamesView,MechanicsApiViewSet,PublisherApiViewSet,
-                    PublisherView,MainView, RandomGameView, GagaView, CrowdView,
-                    LavkaView,StilView,HobbyView,NizaView)
+from .views import (GamesView, MechanicsApiViewSet, PublisherApiViewSet,
+                    PublisherView, MainView, RandomGameView, GagaView, CrowdView,
+                    LavkaView, StilView, HobbyView, NizaView)
 from rest_framework.urlpatterns import format_suffix_patterns
 
-mechanics_list = MechanicsApiViewSet.as_view({'get':'list'})
-mechanics_detail = MechanicsApiViewSet.as_view({'get':'retrieve'})
+mechanics_list = MechanicsApiViewSet.as_view({'get':'list','post':'create'})
+mechanics_detail = MechanicsApiViewSet.as_view({'get':'retrieve','put':'update','delete':'destroy'})
 publisher_list = PublisherApiViewSet.as_view({'get':'list','post':'create'})
 publisher_detail = PublisherApiViewSet.as_view({'get':'retrieve','put':'update','delete':'destroy'})
 

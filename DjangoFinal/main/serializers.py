@@ -1,4 +1,4 @@
-from .models import Games, Publisher, Mechanics , SerialNumber
+from .models import Games, Publisher, Mechanics, SerialNumber
 from rest_framework import serializers
 
 
@@ -10,7 +10,7 @@ class MechanicsSerializer(serializers.Serializer):
         return Mechanics.objects.create(**validated_data)
 
     def update(self, instance, validated_data):
-        instance.Mechanics = validated_data.get('mechanics', instance.mechanics)
+        instance.mechanics = validated_data.get('mechanics', instance.mechanics)
         instance.save()
         return instance
 
