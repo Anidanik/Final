@@ -1,6 +1,6 @@
 import django.contrib.auth
 from .serializers import GameInCollectionSerializer
-from .models import GameInCollection
+from .models import GameInCollection, CollectionUser
 from main.models import Games
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -16,8 +16,8 @@ class CollectionApiView(APIView):
     def post(self,request):
         id = request.data['id']
         collection, created = CollectionUser.objects.update_or_create(user=request.user)
-        game = Games.objects.get(id=id).select_related('game','collection')
-        game_in_collection, created = GameInCollection.objects.get_or_create(collection=collection, game=game).select_related('game','collection')
+        game = Games.objects.get(id=id)
+        game_in_collection, created = GameInCollection.objects.get_or_create(collection=collection, game=game)
         game_in_collection.save()
         games_in_collection = GameInCollection.objects.filter(collection=collection).select_related('game','collection')
         serializer = GameInCollectionSerializer(games_in_collection, many=True)

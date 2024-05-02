@@ -26,7 +26,7 @@ class GamesView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Games.objects.all().select_related('publisher','serial_number')
+        context['games'] = Games.objects.all().order_by("id").select_related('publisher','serial_number')
         return context
 
 
